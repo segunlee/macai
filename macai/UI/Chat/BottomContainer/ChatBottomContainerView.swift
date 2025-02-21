@@ -42,8 +42,14 @@ struct ChatBottomContainerView: View {
                     }
                 }) {
                     HStack {
-                        Text(chat.persona?.name ?? "Select Assistant")
-                            .font(.caption)
+                        if let name = chat.persona?.name {
+                            Text(name)
+                                .font(.caption)
+                        } else {
+                            Text("Select Assistant")
+                                .font(.caption)
+                        }
+                            
                         Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
                             .font(.caption)
                     }

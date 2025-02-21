@@ -85,10 +85,10 @@ struct ChatListRow: View, Equatable {
 
     func deleteChat(_ chat: ChatEntity) {
         let alert = NSAlert()
-        alert.messageText = "Delete chat \(chat.name)?"
-        alert.informativeText = "Are you sure you want to delete this chat?"
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = String(format: String(localized: "Delete chat %@"), chat.name)
+        alert.informativeText = String(localized: "Are you sure you want to delete this chat?")
+        alert.addButton(withTitle: String(localized: "Delete"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
         alert.alertStyle = .warning
         alert.beginSheetModal(for: NSApp.keyWindow!) { response in
             if response == .alertFirstButtonReturn {
@@ -111,10 +111,10 @@ struct ChatListRow: View, Equatable {
 
     func renameChat(_ chat: ChatEntity) {
         let alert = NSAlert()
-        alert.messageText = "Rename chat"
-        alert.informativeText = "Enter new name for this chat"
-        alert.addButton(withTitle: "Rename")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = String(localized: "Rename chat")
+        alert.informativeText = String(localized: "Enter new name for this chat")
+        alert.addButton(withTitle: String(localized: "Rename"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
         alert.alertStyle = .informational
         let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
         textField.stringValue = chat.name
@@ -135,10 +135,10 @@ struct ChatListRow: View, Equatable {
     
     func clearChat(_ chat: ChatEntity) {
         let alert = NSAlert()
-        alert.messageText = "Clear chat \(chat.name)?"
-        alert.informativeText = "Are you sure you want to delete all messages from this chat? Chat parameters will not be deleted. This action cannot be undone."
-        alert.addButton(withTitle: "Clear")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = String(format: String(localized: "Clear chat %@?"), chat.name)
+        alert.informativeText = String(localized: "Are you sure you want to delete all messages from this chat? Chat parameters will not be deleted. This action cannot be undone.")
+        alert.addButton(withTitle: String(localized: "Clear"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
         alert.alertStyle = .warning
         alert.beginSheetModal(for: NSApp.keyWindow!) { response in
             if response == .alertFirstButtonReturn {

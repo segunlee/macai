@@ -323,7 +323,11 @@ extension ChatView {
                         break
                     case .failure(let error):
                         print("Error sending message: \(error)")
-                        currentError = ErrorMessage(type: error as! APIError, timestamp: Date())
+                        if let apiError = error as? APIError {
+                            currentError = ErrorMessage(type: apiError, timestamp: Date())
+                        } else {
+                            currentError = ErrorMessage(type: APIError.requestFailed(error), timestamp: Date())
+                        }
                         handleResponseFinished()
                     }
                 }
@@ -343,7 +347,11 @@ extension ChatView {
                         break
                     case .failure(let error):
                         print("Error sending message: \(error)")
-                        currentError = ErrorMessage(type: error as! APIError, timestamp: Date())
+                        if let apiError = error as? APIError {
+                            currentError = ErrorMessage(type: apiError, timestamp: Date())
+                        } else {
+                            currentError = ErrorMessage(type: APIError.requestFailed(error), timestamp: Date())
+                        }
                         handleResponseFinished()
                     }
                 }

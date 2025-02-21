@@ -14,7 +14,7 @@ struct MessageInputView: View {
     @State var frontReturnKeyType = OmenTextField.ReturnKeyType.next
     @State var isFocused: Focus?
     @State var dynamicHeight: CGFloat = 16
-    @State var inputPlaceholderText = "Type your prompt here"
+    @State var inputPlaceholderText = String(localized: "Type your prompt here")
     @State var cornerRadius = 20.0
     private let maxInputHeight = 160.0
     private let initialInputSize = 16.0
